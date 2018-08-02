@@ -1,0 +1,61 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cadastro</title>
+</head>
+<body>
+    <div> 
+        <form action="Store" method="post">
+            <div>
+                <label for="campo-marca">Marca</label>
+                <input type="text" name="balao.Marca" id="campo-marca" placeholder="Digite uma marca"/>
+            </div>
+
+            <div>
+                <label for="campo-preco">Preço</label>
+                <input type="number" name="balao.Preco" id="campo-preco" placeholder="Digite um preço" />
+            </div>
+
+            <div>
+                <label for="campo-quantidade">Quantidade</label>
+                <input type="number" name="balao.Quantidade" id="campo-quantidade" placeholder="Digite uma quantidade" />
+            </div>
+
+            <div>
+                <label for="campo-cor">Cor</label>
+                <select name="balao.Cor" id="campo-cor">
+                    <option></option>
+                    <option>Vermelho</option>
+                    <option>Uva</option>
+                    <option>Rosê</option>
+                    <option>Fushia</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="campo-tamanho">Tamanho</label>
+                <input type="number" id="campo-tamanho" name="balao.Tamanho" placeholder="Digite um tamanho" />
+            </div>
+
+            <div>
+                <input type="radio" name="balao.Cheio" id="campo-cheio" value="true" />
+                <label for="campo-cheio">Cheio</label>
+
+                <input type="radio" name="balao.Cheio" id="campo-vazio" value="false" />
+                <label for="campo-vazio">Vazio</label>
+            </div>
+
+            <div>
+                <input type="submit" value="Cadastrar" />
+            </div>
+        </form>
+    </div>
+</body>
+</html>
