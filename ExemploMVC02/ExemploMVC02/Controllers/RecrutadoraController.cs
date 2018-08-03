@@ -23,9 +23,29 @@ namespace ExemploMVC02.Controllers
             return View();
         }
 
-        public ActionResult Editar()
+        public ActionResult Editar(int id)
         {
+            Recrutadora recrutadora = new RecrutadoraRepository().ObterPeloId(id);
+            ViewBag.Recrutadora = recrutadora;
             return View();
+        }
+
+        public ActionResult Excluir(int id)
+        {
+            bool apagado = new RecrutadoraRepository().Excluir(id);
+            return null;
+        }
+
+        public ActionResult Store(Recrutadora recrutadora)
+        {
+            int identificador = new RecrutadoraRepository().Cadastrar(recrutadora);
+            return RedirectToAction("Editar", new { id = identificador });
+        }
+
+        public ActionResult Update(Recrutadora recrutadora)
+        {
+            bool alterado = new RecrutadoraRepository().Alterar(recrutadora);
+            return null;
         }
     }
 }

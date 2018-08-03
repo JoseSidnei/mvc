@@ -12,6 +12,39 @@
 </head>
 <body>
     <div> 
+        <form action="/Recrutadora/Store" method="post">
+            <div>
+                <label for="campo-nome">Nome</label>
+                <input type="text" name="recrutadora.Nome" id="campo-nome" />
+            </div>
+            
+            <div>
+                <label for="campo-cpf">CPF</label>
+                <input type="text" name="recrutadora.Cpf" id="campo-cpf" />
+            </div>
+            
+            <div>
+                <label for="campo-salario">Salário</label>
+                <input type="text" name="recrutadora.Salario" id="campo-salario" />
+            </div>
+
+            <div>
+                <label for="campo-tempo-empresa">Tempo empresa</label>
+                <select id="campo-tempo-empresa" name="recrutadora.TempoEmpresa">
+                    <option value="0">0 ano</option>
+                    <option value="1">1 ano</option>
+                    <option value="2">2 ano</option>
+                    <option value="3">3 ano</option>
+                    <option value="4">4 ano</option>
+                    <option value="5">5 ano</option>
+                    <option value="6">6 ano</option>
+                </select>
+            </div>
+
+            <div>
+                <input type="submit" value="Salvar" />
+            </div>
+        </form>
     </div>
 </body>
 </html>

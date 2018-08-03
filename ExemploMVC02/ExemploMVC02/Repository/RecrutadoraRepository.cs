@@ -37,7 +37,7 @@ namespace ExemploMVC02.Repository
         {
             SqlCommand command = new BancoDados().ObterConexao();
 
-            command.CommandText = @"INSERT INTO recrutadoras (nome, slario, cpf, tempo_empresa) 
+            command.CommandText = @"INSERT INTO recrutadoras (nome, salario, cpf, tempo_empresa) 
             OUTPUT INSERTED.ID
             VALUES (@NOME, @SALARIO, @CPF, @TEMPO_EMPRESA)";
             command.Parameters.AddWithValue("@NOME", recrutadora.Nome);
@@ -45,22 +45,49 @@ namespace ExemploMVC02.Repository
             command.Parameters.AddWithValue("@CPF", recrutadora.CPF);
             command.Parameters.AddWithValue("@TEMPO_EMPRESA", recrutadora.TempoEmpresa);
             int id = Convert.ToInt32(command.ExecuteScalar().ToString());
-            return 0;
+            return id;
         }
 
         public bool Alterar(Recrutadora recrutadora)
         {
-            return false;
+            SqlCommand command = new BancoDados().ObterConexao();
+            command.CommandText = @"UPDATE recrutadoras 
+                SET nome = @NOME, cpf = @CPF, tempo_empresa = @TEMPO_EMPRESA, salario = @SALARIO 
+                WHERE id = @ID";
+            command.Parameters.AddWithValue("@NOME", recrutadora.Nome);
+            command.Parameters.AddWithValue("@CPF", recrutadora.CPF);
+            command.Parameters.AddWithValue("@TEMPO_EMPRESA", recrutadora.TempoEmpresa);
+            command.Parameters.AddWithValue("@SALARIO", recrutadora.Salario);
+            command.Parameters.AddWithValue("@ID", recrutadora.Id);
+            return command.ExecuteNonQuery() == 1;
         }
 
         public bool Excluir(int id)
         {
-            return false;
+            SqlCommand command = new BancoDados().ObterConexao();
+            command.CommandText = @"DELETE FROM recrutadoras WHERE id = @ID";
+            command.Parameters.AddWithValue("@ID", id);
+            return command.ExecuteNonQuery() == 1;
         }
 
         public Recrutadora ObterPeloId(int id)
         {
             Recrutadora recrutadora = null;
+            SqlCommand command = new BancoDados().ObterConexao();
+            command.CommandText = @"SELECT nome, cpf, tempo_empresa, salario FROM recrutadoras WHERE id = @ID";
+            command.Parameters.AddWithValue("@ID", id);
+            DataTable table = new DataTable();
+            table.Load(command.ExecuteReader());
+
+            if (table.Rows.Count == 1)
+            {
+                recrutadora = new Recrutadora();
+                recrutadora.Id = id;
+                recrutadora.Nome = table.Rows[0][0].ToString();
+                recrutadora.CPF = table.Rows[0][1].ToString();
+                recrutadora.TempoEmpresa = Convert.ToByte(table.Rows[0][2]);
+                recrutadora.Salario = Convert.ToDecimal(table.Rows[0][3]);
+            }
             return recrutadora;
         }
     }
