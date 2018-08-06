@@ -11,6 +11,8 @@ namespace ExemploMVC02.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Nome não pode ser vazio")]
+        [MinLength(7,ErrorMessage = "Nome deve conter no mínimo 7 caracteres")]
+        [MaxLength(100,ErrorMessage = "Nome deve conter no máximo 100 caracteres")]
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "CPF não pode ser vazio")]
