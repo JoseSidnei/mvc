@@ -24,6 +24,7 @@ namespace ExemploMVC02.Controllers
         public ActionResult Cadastro()
         {
             ViewBag.TituloPagina = "Recrutadoras Cadastro";
+            ViewBag.Recrutadora = new Recrutadora();
             return View();
         }
 
@@ -48,6 +49,7 @@ namespace ExemploMVC02.Controllers
         {
             if (ModelState.IsValid)
             {
+                recrutadora.CPF = recrutadora.CPF.Replace(".", "").Replace("-", "");
                 int identificador = new RecrutadoraRepository().Cadastrar(recrutadora);
                 return RedirectToAction("Editar", new { id = identificador });
             }

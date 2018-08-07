@@ -2,38 +2,47 @@
     Layout = "~/Views/Shared/Master.cshtml";
 }
 
+
+
 <div class="row mt-3">
     <div class="col-md-12">
         <h5 class="text-primary text-center">Cadastro de Recrutadora</h5>
     </div>
 </div>
 
+
+
 <div class="row">
     <div class="col-md-6 offset-md-3">
-        <form action="/Recrutadora/Store" method="post" onsubmit="validarFormulario();return false;">
-            <div class="form-group">
-                <label for="campo-nome">Nome <span class="text-danger font-weight-bold">*</span>
+        <form action="/Recrutadora/Store" method="post" onsubmit="validarFormulario();">
+            <div class="form-group" id="div-campo-nome">
+                <label for="campo-nome">
+                    Nome Completo<span class="text-danger font-weight-bold">*</span>
                 </label>
-                <input type="text" name="Recrutadora.Nome" id="campo-nome" class="form-control" required="required" />
-                @Html.ValidationMessage("Recrutadora.Nome", new { @class = "text-danger"})
+                <input type="text" name="Recrutadora.Nome" id="campo-nome" class="form-control" required="required" onfocusout="validarCampoNome()" value="@ViewBag.Recrutadora.Nome" />
+                @Html.ValidationMessage("Recrutadora.Nome", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
-                <label for="campo-cpf">CPF <span class="text-danger font-weight-bold">*</span>
+                <label for="campo-cpf">
+                    CPF <span class="text-danger font-weight-bold">*</span>
                 </label>
-                <input type="text" name="Recrutadora.Cpf" id="campo-cpf" class="form-control" required="required" />
+                <input type="text" name="Recrutadora.Cpf" id="campo-cpf" class="form-control" required="required" value="@ViewBag.Recrutadora.CPF" />
                 @Html.ValidationMessage("Recrutadora.CPF", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
-                <label for="campo-salario">Salário <span class="text-danger font-weight-bold">*</span>
+                <label for="campo-salario">
+                    Salário <span class="text-danger font-weight-bold">*</span>
                 </label>
-                <input type="text" name="Recrutadora.Salario" id="campo-salario" class="form-control" required="required" />
+                <input type="text" name="Recrutadora.Salario" id="campo-salario" class="form-control" required="required" value="@ViewBag.Recrutadora.Salario" />
                 @Html.ValidationMessage("Recrutadora.Salario", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
-                <label for="campo-tempo-empresa">Tempo empresa <span class="text-danger font-weight-bold">*</span>
+                <label for="campo-tempo-empresa">
+                    Tempo empresa
+                    <span class="text-danger font-weight-bold">*</span>
                 </label>
                 <select id="campo-tempo-empresa" name="Recrutadora.TempoEmpresa" class="form-control" required="required">
                     <option value="0">0 ano</option>
@@ -56,4 +65,5 @@
             </div>
         </form>
     </div>
+
 </div>
